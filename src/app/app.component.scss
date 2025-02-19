@@ -1,0 +1,24 @@
+/* Asegura que el layout ocupe el 100% de la pantalla */
+html,
+body {
+ margin: 0;
+ padding: 0;
+ height: 100%; /* Hace que todo el cuerpo ocupe la altura completa */
+ font-family: Arial, sans-serif;
+}
+
+
+:host {
+ display: flex;
+ flex-direction: column;
+ min-height: 100vh; /* El contenedor principal ocupa toda la altura de la ventana */
+}
+
+
+.main-container {
+ flex: 1; /* Ocupa todo el espacio disponible entre header y footer */
+ padding: 20px; /* Opcional: margen interno para el contenido principal */
+ box-sizing: border-box; /* Incluye el padding dentro del tamaño del contenedor */
+ overflow: auto; /* Asegura que el contenido pueda desplazarse si es demasiado grande */
+ background-color: #f8f8f8; /* Fondo claro para destacar */
+}

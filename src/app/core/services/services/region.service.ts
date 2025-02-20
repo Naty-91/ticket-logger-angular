@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { environment } from '../../../../environments/environments';
-
 
 /**
  * Servicio para gestionar las regiones, incluyendo la obtención de datos paginados y autenticación con token.
@@ -12,7 +11,6 @@ import { environment } from '../../../../environments/environments';
   providedIn: 'root', // Permite que el servicio esté disponible en toda la aplicación sin necesidad de declararlo en un módulo.
 })
 export class RegionService {
-
   /**
    * Constructor del servicio.
    * @param http Cliente HTTP de Angular para realizar solicitudes a la API.
@@ -28,8 +26,7 @@ export class RegionService {
    * @param sortDirection Dirección de la ordenación (asc para ascendente, desc para descendente).
    * @returns Observable que emite la respuesta paginada de la API con las regiones solicitadas.
    */
-  fetchRegions (page: number, size: number, sortColumn: string, sortDirection: string): Observable<any> {
-
+  fetchRegions(page: number, size: number, sortColumn: string, sortDirection: string): Observable<any> {
     // Obtener el token de autenticación desde el servicio de autenticación
     const token = this.authService.getToken();
 
@@ -44,11 +41,10 @@ export class RegionService {
       .set('size', size.toString()) // Cantidad de elementos por página
       .set('sort', `${sortColumn},${sortDirection}`); // Parámetro de ordenación en formato "columna,dirección"
 
-   // Realizar la solicitud GET a la API con autenticación y parámetros de paginación y ordenación
-  return this.http.get('${environment.apiUrl}/regions', {
-    headers: new HttpHeaders({ Authorization: `Bearer ${token}` }), // Encabezado con el token de autenticación
-    params: params // Parámetros de paginación y ordenación
-  });
+    // Realizar la solicitud GET a la API con autenticación y parámetros de paginación y ordenación
+    return this.http.get(`${environment.apiUrl}/regions`, { // ✅ Uso de backticks
+      headers: new HttpHeaders({ Authorization: `Bearer ${token}` }), // Encabezado con el token de autenticación
+      params: params // Parámetros de paginación y ordenación
+    });
   }
 }
-

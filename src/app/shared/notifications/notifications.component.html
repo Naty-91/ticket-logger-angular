@@ -1,0 +1,28 @@
+<!-- Botón con icono y badge de notificaciones -->
+<button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon matBadge="{{ unreadCount }}" matBadgeColor="warn" [matBadgeHidden]="unreadCount === 0">
+      notifications
+    </mat-icon>
+  </button>
+  
+  <!-- Menú desplegable con las notificaciones -->
+  <mat-menu #menu="matMenu">
+    <ng-container *ngIf="notifications.length > 0; else noNotifications">
+      <mat-list>
+        <mat-list-item *ngFor="let notification of notifications">
+          <mat-icon matListIcon>notification_important</mat-icon>
+          <div>
+            <strong>{{ notification.subject }}</strong>
+            <p>{{ notification.message }}</p>
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <button mat-button color="primary" (click)="markAllAsRead()">Marcar como leído</button>
+    </ng-container>
+  
+    <!-- Si no hay notificaciones -->
+    <ng-template #noNotifications>
+      <p class="no-notifications">No tienes notificaciones</p>
+    </ng-template>
+  </mat-menu>
+  

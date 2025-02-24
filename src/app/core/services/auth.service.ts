@@ -94,7 +94,7 @@ export class AuthService {
       // Decodificar el token JWT
       const decodedToken: any = jwtDecode(token);
       
-      // Retornar el 'sub' que es el campo estándar para el nombre de usuario
+      // Retornar el 'sub' que es el campo estándar para el nombre de usuario****
       return decodedToken.sub || null;
       
     } catch (error) {

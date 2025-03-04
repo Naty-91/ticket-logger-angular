@@ -1,0 +1,18 @@
+<div class="weather-container">
+  <div class="weather-box">
+    <div class="weather-details">
+      <div class="weather-detail">
+        <img src="http://openweathermap.org/img/wn/{{ weatherInfo.weather[0].icon }}.png"
+             alt="Weather Icon" class="weather-icon">
+        <ul class="weather-list">
+          <li><strong>Ciudad:</strong> {{ weatherInfo.name }}</li>
+          <li><strong>País:</strong> {{ weatherInfo.sys.country }}</li>
+          <li><strong>Temperatura:</strong> {{ weatherInfo.main.temp }}°C</li>
+          <li><strong>Sensación térmica:</strong> {{ weatherInfo.main.feels_like }}°C</li>
+          <li><strong>Humedad:</strong> {{ weatherInfo.main.humidity }}%</li>
+          <li><strong>Viento:</strong> {{ weatherInfo.wind.speed }} km/h</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
